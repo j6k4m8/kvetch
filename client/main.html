@@ -8,7 +8,7 @@
                 <h2>Click to refresh an endpoint.</h2>
             </div>
         </div>
-        <div class="ui row">
+        <div class="ui row stackable">
             {{> main}}
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 <template name="main">
     {{#each statuses}}
-        <div class="three wide column">
+        <div class="four wide column">
         {{> status_card}}
         </div>
     {{/each}}
