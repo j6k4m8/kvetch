@@ -15,6 +15,7 @@
 </body>
 
 <template name="main">
+    {{> new_status }}
     {{#each statuses}}
         <div class="four wide column">
         {{> status_card}}
@@ -23,13 +24,37 @@
 </template>
 
 <template name="status_card">
-    <div id="{{_id}}" class="ui labeled button" tabindex="0" data-content="{{url}}">
+    <div id="{{_id}}" class="ui labeled button js-status-button" tabindex="0" data-content="{{url}}">
         <div class="ui {{color}} button">
             <i class="{{icon}} icon"></i> {{ name }}
         </div>
         <a class="ui basic {{color}} left pointing label">
             {{health}}
         </a>
+        <a class="ui basic {{color}} left pointing label">
+            <i class="delete icon"></i>
+        </a>
     </div>
     <script>$('#{{_id}}').popup();</script>
+</template>
+
+<template name="new_status">
+    <div class="ui input">
+        <input id="form-name" type="text" placeholder="Name">
+    </div>
+    <div class="ui input">
+        <input id="form-endpoint" type="text" placeholder="http://endpoint.url/path">
+    </div>
+    <br>
+    <select id="form-condition" class="ui dropdown">
+        <option value="">Health Qualifier</option>
+        <option value="CONTAINS_VALUE">Contains Value</option>
+        <option value="STATUS_CODE">Status Code</option>
+    </select>
+    <div id="form-arg" class="ui input">
+        <input type="text" placeholder="Comparator (e.g. status code '200')">
+    </div>
+    <button id="form-submit" class="ui primary button">
+        Save
+    </button>
 </template>
