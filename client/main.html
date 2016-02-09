@@ -1,0 +1,35 @@
+<body>
+    <title>API Health</title>
+    <div class="ui grid container">
+        <div class="ui row">
+            <div class="sixteen wide column">
+                <br>
+                <h1>API Health</h1>
+                <h2>Click to refresh an endpoint.</h2>
+            </div>
+        </div>
+        <div class="ui row">
+            {{> main}}
+        </div>
+    </div>
+</body>
+
+<template name="main">
+    {{#each statuses}}
+        <div class="three wide column">
+        {{> status_card}}
+        </div>
+    {{/each}}
+</template>
+
+<template name="status_card">
+    <div id="{{_id}}" class="ui labeled button" tabindex="0" data-content="{{url}}">
+        <div class="ui {{color}} button">
+            <i class="{{icon}} icon"></i> {{ name }}
+        </div>
+        <a class="ui basic {{color}} left pointing label">
+            {{health}}
+        </a>
+    </div>
+    <script>$('#{{_id}}').popup();</script>
+</template>
