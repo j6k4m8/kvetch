@@ -12,7 +12,11 @@ Meteor.methods({
     testEndpoint: function(url) {
         res = HTTP.get(url);
         return res.statusCode == 200;
-    }
+    },
+
+    refreshEndpoints: function() {
+        refreshEndpoints();
+    },
 })
 
 SyncedCron.add({
