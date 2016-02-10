@@ -8,6 +8,13 @@ refreshEndpoints = function() {
     }
 };
 
+Meteor.methods({
+    testEndpoint: function(url) {
+        res = HTTP.get(url);
+        return res.statusCode == 200;
+    }
+})
+
 SyncedCron.add({
     name: 'Check endpoints',
     schedule: function(parser) {

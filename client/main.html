@@ -39,22 +39,24 @@
 </template>
 
 <template name="new_status">
-    <div class="ui input">
-        <input id="form-name" type="text" placeholder="Name">
+    <div class="ui grid">
+        <div class="ui form four fields">
+            <div class="ui input">
+                <input id="form-name" type="text" placeholder="Name">
+            </div>
+            <div class="ui input">
+                <input id="form-endpoint" type="text" placeholder="http://endpoint.url/path">
+            </div>
+            <br>
+            <select id="form-condition" class="ui dropdown">
+                <option value="">Health Qualifier</option>
+                <option value="CONTAINS_VALUE">Contains Value</option>
+                <option value="STATUS_CODE">Status Code</option>
+            </select>
+            <div id="form-arg" class="ui input">
+                <input type="text" placeholder="Comparator (e.g. status code '200')">
+            </div>
+            <button id="form-submit" class="ui yellow button">Save</button>
+        </div>
     </div>
-    <div class="ui input">
-        <input id="form-endpoint" type="text" placeholder="http://endpoint.url/path">
-    </div>
-    <br>
-    <select id="form-condition" class="ui dropdown">
-        <option value="">Health Qualifier</option>
-        <option value="CONTAINS_VALUE">Contains Value</option>
-        <option value="STATUS_CODE">Status Code</option>
-    </select>
-    <div id="form-arg" class="ui input">
-        <input type="text" placeholder="Comparator (e.g. status code '200')">
-    </div>
-    <button id="form-submit" class="ui primary button">
-        Save
-    </button>
 </template>

@@ -37,5 +37,21 @@ Template.status_card.events({
 Template.new_status.events({
     'click #form-submit': function() {
         Meteor.call('newEndpoint', $('#form-name').val(), $('#form-endpoint').val(), $('#form-condition').val(), $('#form-arg').val())
+    },
+
+    'change input, keyup input': function() {
+        $('#form-submit').addClass('loading');
+        _th_retryNewEndpoint();
     }
 });
+
+retryNewEndpoint = function() {
+    Meteor.call('testEndpoint', $('#form-endpoint').val(), function(err, val) {
+        if (!!val) {
+            $('#form-submit').removeClass('yellow loading').addClass('green');
+        } else {
+            $('#form-submit').removeClass('green loading').addClass('red');
+        }
+    })
+};
+var _th_retryNewEndpoint = _.throttle(retryNewEndpoint, 2000);
